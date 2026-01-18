@@ -1,61 +1,119 @@
 format = """
-[](color_orange)\
-$os\
-[ tetsu ](fg:color_fg0 bg:color_orange)\
-[](bg:color_yellow fg:color_orange)\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
 $directory\
-[](fg:color_yellow bg:color_aqua)\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
 $git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
 $git_status\
-[](fg:color_aqua bg:color_black)\
-$c\
-$rust\
-$golang\
-$nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
-$python\
-[](fg:color_black bg:color_bg3)\
+$hg_branch\
+$hg_state\
+$pijul_channel\
 $docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$fortran\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
 $conda\
-[](fg:color_bg3 bg:color_bg1)\
-[ ](fg:color_bg1)\
-$line_break$character"""
-
-right_format = '$time'
-
-palette = 'gruvbox_dark'
-
-[palettes.gruvbox_dark]
-color_fg0 = '#fbf1c7'
-color_bg1 = '#3c3836'
-color_bg3 = '#665c54'
-color_black = '#141414'
-color_blue = '#458588'
-color_aqua = '#689d6a'
-color_green = '#98971a'
-color_orange = '#d65d0e'
-color_purple = '#b16286'
-color_red = '#cc241d'
-color_yellow = '#d79921'
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$mise\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$netns\
+$shell\
+$character"""
 
 [aws]
-symbol = "  "
+symbol = " "
 
 [buf]
 symbol = " "
 
+[bun]
+symbol = " "
+
 [c]
 symbol = " "
 
+[cpp]
+symbol = " "
+
+[cmake]
+symbol = " "
+
 [conda]
 symbol = " "
-
-[character]
-success_symbol = "[❯](bold green)"  # コマンド成功時
-error_symbol   = "[❯](bold red)"    # コマンド失敗時
 
 [crystal]
 symbol = " "
@@ -63,11 +121,19 @@ symbol = " "
 [dart]
 symbol = " "
 
+[deno]
+symbol = " "
+
 [directory]
-style = "fg:color_fg0 bg:color_yellow"
-format = "[ $path ]($style)"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
 truncation_length = 3
-truncation_symbol = "…/"
+truncate_to_repo = true
+fish_style_pwd_dir_length = 0
+use_logical_path = true
+truncation_symbol = ".../"
+home_symbol = "~"
+read_only = " 󰌾 "
+read_only_style = "red"
 
 [docker_context]
 symbol = " "
@@ -81,28 +147,26 @@ symbol = " "
 [fennel]
 symbol = " "
 
+[fortran]
+symbol = " "
+
 [fossil_branch]
 symbol = " "
 
+[gcloud]
+symbol = " "
+
 [git_branch]
-symbol = ""
-style = "bg:color_aqua"
-format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
-
-[git_status]
-style = "bg:color_aqua"
-format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
-
+symbol = " "
 
 [git_commit]
 tag_symbol = '  '
 
 [golang]
-symbol = ""
-# symbol = "󰟓 "
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_blue bg:color_black)]($style)'
-# format = '[$symbol](fg:color_blue bg:color_black)[$version](fg:color_blue bg:color_black)'
+symbol = " "
+
+[gradle]
+symbol = " "
 
 [guix_shell]
 symbol = " "
@@ -145,11 +209,14 @@ symbol = " "
 
 [nodejs]
 symbol = " "
-style = "bg:color_breen"
-format = '[[ $symbol( $version) ](fg:bold green bg:color_black)]($style)'
 
 [ocaml]
 symbol = " "
+
+[os]
+format = "[ $symbol ]($style)"
+style = ""
+disabled = false
 
 [os.symbols]
 Alpaquita = " "
@@ -157,11 +224,14 @@ Alpine = " "
 AlmaLinux = " "
 Amazon = " "
 Android = " "
+AOSC = " "
 Arch = " "
 Artix = " "
+CachyOS = " "
 CentOS = " "
 Debian = " "
 DragonFly = " "
+Elementary = " "
 Emscripten = " "
 EndeavourOS = " "
 Fedora = " "
@@ -170,6 +240,7 @@ Garuda = "󰛓 "
 Gentoo = " "
 HardenedBSD = "󰞌 "
 Illumos = "󰈸 "
+Ios = "󰀷 "
 Kali = " "
 Linux = " "
 Mabox = " "
@@ -180,6 +251,7 @@ MidnightBSD = " "
 Mint = " "
 NetBSD = " "
 NixOS = " "
+Nobara = " "
 OpenBSD = "󰈺 "
 openSUSE = " "
 OracleLinux = "󰌷 "
@@ -195,6 +267,7 @@ Ubuntu = " "
 Unknown = " "
 Void = " "
 Windows = "󰍲 "
+Zorin = " "
 
 [package]
 symbol = "󰏗 "
@@ -207,6 +280,9 @@ symbol = " "
 
 [pijul_channel]
 symbol = " "
+
+[pixi]
+symbol = "󰏗 "
 
 [python]
 symbol = " "
@@ -223,17 +299,14 @@ symbol = "󱘗 "
 [scala]
 symbol = " "
 
+[status]
+symbol = " "
+
 [swift]
 symbol = " "
 
-[time]
-disabled = false
-time_format = "%R"
-style = "bg:color_bg1"
-format = '[[  $time ](fg:color_fg0)]($style)'
+[xmake]
+symbol = " "
 
 [zig]
 symbol = " "
-
-[gradle]
-symbol = " "
